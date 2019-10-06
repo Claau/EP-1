@@ -1,6 +1,7 @@
 #ifndef TABELA_H
 #define TABELA_H
 #include "Equipe.h"
+#include "Modalidade.h"
 
 #include <iostream>
 

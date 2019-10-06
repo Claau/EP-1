@@ -16,6 +16,8 @@ class Modalidade{
         Equipe** participantes;
         int quantidadeDeEquipes;
 
+        bool estaOrdenado = false; /* confere se o vetor ordem possui participantes: ou seja, se a modalidade ja tem a posicao de cada participante*/
+
 
     public:
 

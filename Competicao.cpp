@@ -10,7 +10,10 @@ Competicao::Competicao(string nome, Equipe** equipes, int quantidade, int maximo
 }
 
 Competicao::~Competicao(){
+    for(int i = 0; i < maximoDeModalidades; i++)
+        delete modalidades[i];
     delete[] modalidades;
+
 }
 string Competicao::getNome(){
     return this->nome;
@@ -25,6 +28,7 @@ int Competicao::getQuantidadeDeEquipes(){
 }
 
 bool Competicao::adicionar(Modalidade* m){
+
     for (int i = 0; i < maximoDeModalidades; i++) {
             if(modalidades[i] == NULL) {
                 modalidades[i] = m;
@@ -42,14 +46,14 @@ int Competicao::getQuantidadeDeModalidades(){
 }
 
 Modalidade** Competicao::getModalidades(){
-    return this-> modalidades;
+   return this-> modalidades;
 }
 
 Tabela* Competicao::getTabela(){
-Tabela  *tabela = new Tabela( equipes, quantidade);
+Tabela  *tabela = new Tabela(equipes, quantidade);
 
     /*Atribuicao dos pontos a cada posicao de participante*/
-    for(int j = 0; j < maximoDeModalidades ; j++){
+    for(int j = 0; j < getQuantidadeDeModalidades() ; j++){
         if(modalidades[j]->getPosicao(equipes[0]) != -1){
             for(int i = 0; i < quantidade; i++){
 
@@ -94,6 +98,7 @@ Tabela  *tabela = new Tabela( equipes, quantidade);
             }
     }
     return tabela;
+
 }
 
 void Competicao::imprimir(){

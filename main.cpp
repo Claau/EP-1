@@ -31,7 +31,8 @@ int main()
     int QntModalidades;
     cout << endl << "Informe a quantidade de modalidades: ";
     cin >> QntModalidades;
-    string *ModalidadeNomes = new string[QntModalidades];
+    //string *ModalidadeNomes = new string[QntModalidades];
+    string ModalidadeNomes;
     Modalidade **m = new Modalidade*[QntModalidades];
     int ordem;
     Competicao *c = new Competicao(NomeCompeticao, p, QntEquipes, QntModalidades);
@@ -41,7 +42,7 @@ int main()
         /* criacao do vetor que armazena a ordem das equipes em cada modalidade */
         Equipe **o = new Equipe*[QntEquipes];
         cout << "Informe o nome da modalidade " << i+1 << ": ";
-        cin >> ModalidadeNomes[i];
+        cin >> ModalidadeNomes;
         for(int j = 0; j < QntEquipes; j++)
         {
             cout << "Informe a equipe " << j+1 << "a colocada: ";
@@ -49,14 +50,21 @@ int main()
             o[j] = p[ordem - 1];
         }
         /* criacao de cada modalidade, e adicao das modalidades na competicao */
-        m[i] = new Modalidade(ModalidadeNomes[i], p, QntEquipes);
+        m[i] = new Modalidade(ModalidadeNomes, p, QntEquipes);
         m[i]->setResultado(o);
         c->adicionar(m[i]);
     }
     c->imprimir();
 
-
-    delete[] ModalidadeNomes;
+    m[0]->~Modalidade();
+    delete[] m;
+    delete[] p;
+    /*m->~Modalidade();
+    p->~Equipe();
+    for(int i = 0; i < QntModalidades; i ++)
+        m[i]->~Modalidade();
+    for(int i = 0; i < QntEquipes; i ++)
+        p[i]->~Equipe();*/
     return 0;
 }
 
